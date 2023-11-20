@@ -12,6 +12,10 @@ console.log(newObj);
 return newObj;
 }
 
+function showCollection() {
+  
+}
+
 addToCollection(myCollection, 'The Human Condition', 'Jon Bellion', 2016);
 addToCollection(myCollection, 'Happier Than Ever', 'Billie Eilish', 2021);
 addToCollection(myCollection, 'The Click', 'AJR', 2017);
