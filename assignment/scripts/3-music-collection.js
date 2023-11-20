@@ -12,7 +12,14 @@ console.log(newObj);
 return newObj;
 }
 
+addToCollection(myCollection, 'The Human Condition', 'Jon Bellion', 2016);
+addToCollection(myCollection, 'Happier Than Ever', 'Billie Eilish', 2021);
+addToCollection(myCollection, 'The Click', 'AJR', 2017);
+addToCollection(myCollection, 'Glory Sound Prep', 'Jon Bellion', 2018);
+addToCollection(myCollection, 'a beautiful blur', 'LANY', 2023);
+addToCollection(myCollection, 'Olly Olly', 'Penny and Sparrow', 2022);
 
+console.log(myCollection);
 
 
 
