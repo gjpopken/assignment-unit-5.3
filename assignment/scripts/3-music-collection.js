@@ -2,11 +2,12 @@ console.log('***** Music Collection *****')
 // Safe Zone -- Write code below this line
 let myCollection = [];
 
-function addToCollection(collection, title, artist, yearPublished) {
+function addToCollection(collection, title, artist, yearPublished, tracks) {
 let newObj = {};
 newObj.title = title;
 newObj.artist = artist;
 newObj.yearPublished = yearPublished;
+newObj.tracks = tracks;
 collection.push(newObj);
 console.log(newObj);
 return newObj;
@@ -14,7 +15,17 @@ return newObj;
 
 function showCollection(collection) {
   for (let i = 0; i < collection.length; i++) {
-    console.log(collection[i].title + ' by ' + collection[i].artist + ', published in ' + collection[i].yearPublished);
+    let listTracks = '';
+    let count = 0;
+   
+    for (j in collection[i].tracks) {
+      count++;
+      listTracks += '\n' + count + '. ' + collection[i].tracks[j].name + ': ' + collection[i].tracks[j].duration;
+      //console.log('tracks:', listTracks);
+    }
+    console.log(collection[i].title + ' by ' + collection[i].artist + ', published in ' + collection[i].yearPublished + listTracks);
+    
+    
   }
 }
 
@@ -61,14 +72,24 @@ function search(collection, searchCriteria) {
 //   return matched;
 // }
 
-addToCollection(myCollection, 'The Human Condition', 'Jon Bellion', 2016);
-addToCollection(myCollection, 'Happier Than Ever', 'Billie Eilish', 2021);
+addToCollection(myCollection, 'The Human Condition', 'Jon Bellion', 2016, 
+[
+  {name: 'He Is The Same', duration: '4:01'}, 
+  {name: '80\'s Films', duration: '3:35'}
+]
+);
+addToCollection(myCollection, 'Happier Than Ever', 'Billie Eilish', 2021, 
+[
+  {name: 'Getting Older', duration: '4:04'}, 
+  {name: 'I Didn\'t Change My Number', duration: '2:37'}
+]
+);
 addToCollection(myCollection, 'The Click', 'AJR', 2017);
 addToCollection(myCollection, 'Glory Sound Prep', 'Jon Bellion', 2018);
 addToCollection(myCollection, 'a beautiful blur', 'LANY', 2023);
 addToCollection(myCollection, 'Olly Olly', 'Penny and Sparrow', 2022);
 
-//console.log(myCollection);
+console.log(myCollection);
 showCollection(myCollection);
 
 console.log('Found:', findByArtist(myCollection, 'Jon Bellion'));
