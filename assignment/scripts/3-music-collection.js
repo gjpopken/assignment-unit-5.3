@@ -28,28 +28,38 @@ function findByArtist(collection, artist) {
   return matched;
 }
 
-// function search(collection, searchCriteria) {
+function search(collection, searchCriteria) {
+  let matched = [];
+  if (searchCriteria !== undefined && searchCriteria.hasOwnProperty('artist' && 'yearPublished')) {
+    console.log('it has the criteria');
+    for (i in collection) {
+      if (collection[i].artist === searchCriteria.artist && collection[i].yearPublished === searchCriteria.yearPublished) {
+        matched.push(collection[i]);
+      }
+    }
+  } else {
+    return collection;
+  }
+  return matched;
+}
+
+
+
+// function search (collection, searchCriteria) {
 //   let matched = [];
-//   if (searchCriteria.hasOwnProperty('artist' && 'year')) {
+//   if (searchCriteria !== undefined && searchCriteria.artist !== (undefined || '') && searchCriteria.yearPublished !== (undefined || '')) {
 //     console.log('it has the criteria');
 //     for (i in collection) {
-//       if (collection[i].artist === searchCriteria.artist && collection[i].yearPublished === searchCriteria.year) {
+//       if (collection[i].artist === searchCriteria.artist && collection[i].yearPublished === searchCriteria.yearPublished) {
 //         matched.push(collection[i]);
 //       }
 //     }
 //   } else {
+//     console.log('it does not have the criteria');
 //     return collection;
 //   }
 //   return matched;
 // }
-
-function search (collection, searchCriteria) {
-  if (searchCriteria.artist !== '' && searchCriteria.year !== '') {
-    console.log('it has the criteria');
-  } else {
-    console.log('it does not have the criteria');
-  }
-}
 
 addToCollection(myCollection, 'The Human Condition', 'Jon Bellion', 2016);
 addToCollection(myCollection, 'Happier Than Ever', 'Billie Eilish', 2021);
@@ -65,7 +75,9 @@ console.log('Found:', findByArtist(myCollection, 'Jon Bellion'));
 console.log('Found:', findByArtist(myCollection, 'The Beetles'));
 
 
-//console.log(search(myCollection, {artist: 'Billie Eilish', year: 2021}));
+console.log(search(myCollection, {artist: 'Jon Bellion', yearPublished: 2016}));
+
+
 
 
 
