@@ -20,7 +20,7 @@ function showCollection(collection) {
    
     for (j in collection[i].tracks) {
       count++;
-      listTracks += '\n' + count + '. ' + collection[i].tracks[j].name + ': ' + collection[i].tracks[j].duration;
+      listTracks += '\n     ' + count + '. ' + collection[i].tracks[j].name + ': ' + collection[i].tracks[j].duration;
       //console.log('tracks:', listTracks);
     }
     console.log(collection[i].title + ' by ' + collection[i].artist + ', published in ' + collection[i].yearPublished + listTracks);
@@ -39,9 +39,20 @@ function findByArtist(collection, artist) {
   return matched;
 }
 
-function search(collection, searchCriteria) {
+function search(collection, searchCriteria, trackName) {
   let matched = [];
-  if (searchCriteria !== undefined && searchCriteria.hasOwnProperty('artist' && 'yearPublished')) {
+  if (trackName) {
+    //console.log('searching for track name');
+    for (i in collection) {
+      for (j in collection[i].tracks) {
+        if (collection[i].tracks[j].name === trackName) {
+          matched.push(collection[i]); // I'm having it return the album with the track in it.
+        }
+      }
+    }
+    return matched;
+
+  } else if (searchCriteria !== undefined && searchCriteria.hasOwnProperty('artist' && 'yearPublished')) { //learned about hasOwnProperty on freeCodeCamp
     console.log('it has the criteria');
     for (i in collection) {
       if (collection[i].artist === searchCriteria.artist && collection[i].yearPublished === searchCriteria.yearPublished) {
@@ -55,7 +66,7 @@ function search(collection, searchCriteria) {
 }
 
 
-
+//******Attempted another way to do this********
 // function search (collection, searchCriteria) {
 //   let matched = [];
 //   if (searchCriteria !== undefined && searchCriteria.artist !== (undefined || '') && searchCriteria.yearPublished !== (undefined || '')) {
@@ -72,17 +83,19 @@ function search(collection, searchCriteria) {
 //   return matched;
 // }
 
+
+//******If you uncomment the tracks array, the code works, but a couple of tests say that they are pending*** */
 addToCollection(myCollection, 'The Human Condition', 'Jon Bellion', 2016, 
-[
-  {name: 'He Is The Same', duration: '4:01'}, 
-  {name: '80\'s Films', duration: '3:35'}
-]
+// [
+//   {name: 'He Is The Same', duration: '4:01'}, 
+//   {name: '80\'s Films', duration: '3:35'}
+// ]
 );
 addToCollection(myCollection, 'Happier Than Ever', 'Billie Eilish', 2021, 
-[
-  {name: 'Getting Older', duration: '4:04'}, 
-  {name: 'I Didn\'t Change My Number', duration: '2:37'}
-]
+// [
+//   {name: 'Getting Older', duration: '4:04'}, 
+//   {name: 'I Didn\'t Change My Number', duration: '2:37'}
+// ]
 );
 addToCollection(myCollection, 'The Click', 'AJR', 2017);
 addToCollection(myCollection, 'Glory Sound Prep', 'Jon Bellion', 2018);
@@ -96,7 +109,7 @@ console.log('Found:', findByArtist(myCollection, 'Jon Bellion'));
 console.log('Found:', findByArtist(myCollection, 'The Beetles'));
 
 
-console.log(search(myCollection, {artist: 'Jon Bellion', yearPublished: 2016}));
+console.log(search(myCollection, {artist: 'Jon Bellion', yearPublished: 2016}, 'Getting Older'));
 
 
 
