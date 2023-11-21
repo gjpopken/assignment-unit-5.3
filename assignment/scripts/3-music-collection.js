@@ -18,6 +18,39 @@ function showCollection(collection) {
   }
 }
 
+function findByArtist(collection, artist) {
+  let matched = [];
+  for (let i in collection) {
+    if (collection[i].artist === artist) {
+      matched.push(collection[i]);
+    }
+  }
+  return matched;
+}
+
+// function search(collection, searchCriteria) {
+//   let matched = [];
+//   if (searchCriteria.hasOwnProperty('artist' && 'year')) {
+//     console.log('it has the criteria');
+//     for (i in collection) {
+//       if (collection[i].artist === searchCriteria.artist && collection[i].yearPublished === searchCriteria.year) {
+//         matched.push(collection[i]);
+//       }
+//     }
+//   } else {
+//     return collection;
+//   }
+//   return matched;
+// }
+
+function search (collection, searchCriteria) {
+  if (searchCriteria.artist !== '' && searchCriteria.year !== '') {
+    console.log('it has the criteria');
+  } else {
+    console.log('it does not have the criteria');
+  }
+}
+
 addToCollection(myCollection, 'The Human Condition', 'Jon Bellion', 2016);
 addToCollection(myCollection, 'Happier Than Ever', 'Billie Eilish', 2021);
 addToCollection(myCollection, 'The Click', 'AJR', 2017);
@@ -27,6 +60,12 @@ addToCollection(myCollection, 'Olly Olly', 'Penny and Sparrow', 2022);
 
 //console.log(myCollection);
 showCollection(myCollection);
+
+console.log('Found:', findByArtist(myCollection, 'Jon Bellion'));
+console.log('Found:', findByArtist(myCollection, 'The Beetles'));
+
+
+//console.log(search(myCollection, {artist: 'Billie Eilish', year: 2021}));
 
 
 
