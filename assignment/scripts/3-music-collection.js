@@ -12,8 +12,10 @@ console.log(newObj);
 return newObj;
 }
 
-function showCollection() {
-  
+function showCollection(collection) {
+  for (let i = 0; i < collection.length; i++) {
+    console.log(collection[i].title + ' by ' + collection[i].artist + ', published in ' + collection[i].yearPublished);
+  }
 }
 
 addToCollection(myCollection, 'The Human Condition', 'Jon Bellion', 2016);
@@ -23,7 +25,9 @@ addToCollection(myCollection, 'Glory Sound Prep', 'Jon Bellion', 2018);
 addToCollection(myCollection, 'a beautiful blur', 'LANY', 2023);
 addToCollection(myCollection, 'Olly Olly', 'Penny and Sparrow', 2022);
 
-console.log(myCollection);
+//console.log(myCollection);
+showCollection(myCollection);
+
 
 
 
